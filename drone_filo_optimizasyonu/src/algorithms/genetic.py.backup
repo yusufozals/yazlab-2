@@ -1,0 +1,251 @@
+import random
+import numpy as np
+from deap import base, creator, tools, algorithms
+
+# DEAP class redefinition uyarılarını önle
+import warnings
+from deap import base, creator, tools
+import sys
+
+# Eğer sınıflar zaten tanımlanmışsa sil
+if hasattr(creator, 'FitnessMax'):
+    del creator.FitnessMax
+if hasattr(creator, 'Individual'):
+    del creator.Individual
+
+# Uyarıları bastır
+warnings.filterwarnings("ignore", category=RuntimeWarning, module="deap.creator")
+
+
+
+class GeneticAlgorithm:
+    def __init__(self, drones, delivery_points, no_fly_zones, depot_position,
+                 population_size=100, generations=50,
+                 crossover_prob=0.7, mutation_prob=0.2):
+        """
+        Genetik Algoritma ile rota optimizasyonu
+
+        Parametreler:
+        -------------
+        drones : list
+            Drone nesnelerinin listesi
+        delivery_points : list
+            DeliveryPoint nesnelerinin listesi
+        no_fly_zones : list
+            NoFlyZone nesnelerinin listesi
+        depot_position : tuple
+            Depo konumu (x, y)
+        population_size : int
+            Popülasyon büyüklüğü
+        generations : int
+            Nesil sayısı
+        crossover_prob : float
+            Çaprazlama olasılığı
+        mutation_prob : float
+            Mutasyon olasılığı
+        """
+        self.drones = drones
+        self.delivery_points = delivery_points
+        self.no_fly_zones = no_fly_zones
+        self.depot_position = depot_position
+        self.population_size = population_size
+        self.generations = generations
+        self.crossover_prob = crossover_prob
+        self.mutation_prob = mutation_prob
+
+        # DEAP kurulumu
+        self._setup_deap()
+
+    def _setup_deap(self):
+        """DEAP için gerekli kurulumları yapar"""
+        # Fitness ve birey tanımları
+        creator.create("FitnessMax", base.Fitness, weights=(1.0,))
+        creator.create("Individual", list, fitness=creator.FitnessMax)
+
+        # Araç kutusu kurulumu
+        self.toolbox = base.Toolbox()
+
+        # Rasgele drone ataması için fonksiyon
+        def random_drone_assignment():
+            return random.randint(0, len(self.drones) - 1)
+
+        # Birey ve popülasyon oluşturucu
+        self.toolbox.register("attr_drone", random_drone_assignment)
+        self.toolbox.register("individual", tools.initRepeat, creator.Individual,
+                              self.toolbox.attr_drone, n=len(self.delivery_points))
+        self.toolbox.register("population", tools.initRepeat, list, self.toolbox.individual)
+
+        # Genetik operatörler
+        self.toolbox.register("evaluate", self.evaluate_fitness)
+        self.toolbox.register("mate", tools.cxTwoPoint)
+        self.toolbox.register("mutate", self.mutate_individual)
+        self.toolbox.register("select", tools.selTournament, tournsize=3)
+
+    def evaluate_fitness(self, individual):
+        """
+        Bireyin fitness değerini hesaplar
+
+        Parametreler:
+        -------------
+        individual : list
+            Drone atamalarını içeren birey
+
+        Dönüş:
+        ------
+        tuple
+            Fitness değeri (tek elemanlı tuple)
+        """
+        # Her drone için rotaları oluştur
+        drone_routes = [[] for _ in range(len(self.drones))]
+
+        # Her drone depodan başlar
+        for i in range(len(self.drones)):
+            drone_routes[i].append(self.depot_position)
+
+        # Teslimat noktalarını ata
+        for i, drone_id in enumerate(individual):
+            dp = self.delivery_points[i]
+            drone_routes[drone_id].append(dp.pos)
+
+        # Her drone'u depoya geri döndür
+        for i in range(len(self.drones)):
+            drone_routes[i].append(self.depot_position)
+
+        # Toplam tamamlanan teslimat sayısı
+        completed_deliveries = 0
+
+        # Toplam enerji tüketimi
+        total_energy = 0
+
+        # Kural ihlalleri
+        rule_violations = 0
+
+        # Her droneun rotasını değerlendir
+        for drone_id, route in enumerate(drone_routes):
+            drone = self.drones[drone_id]
+            current_battery = drone.battery
+            current_load = 0
+
+            # Rotadaki her teslimat için
+            for i in range(1, len(route) - 1):  # İlk nokta depo, son nokta depo
+                # Bir önceki noktadan bu noktaya
+                prev_pos = route[i - 1]
+                curr_pos = route[i]
+
+                # Mesafe ve enerji tüketimi
+                distance = np.sqrt((prev_pos[0] - curr_pos[0]) ** 2 + (prev_pos[1] - curr_pos[1]) ** 2)
+                energy_consumption = distance / 100 * 10  # Her 100m için 10mAh
+
+                # No-fly zone kontrolü
+                for nfz in self.no_fly_zones:
+                    if nfz.does_line_intersect(prev_pos, curr_pos):
+                        rule_violations += 1
+
+                # Batarya kontrolü
+                if energy_consumption > current_battery:
+                    rule_violations += 1
+                else:
+                    current_battery -= energy_consumption
+
+                # Teslimat noktası bulma
+                delivery_idx = None
+                for j, dp in enumerate(self.delivery_points):
+                    if dp.pos == curr_pos:
+                        delivery_idx = j
+                        break
+
+                if delivery_idx is not None:
+                    dp = self.delivery_points[delivery_idx]
+
+                    # Yük kontrolü
+                    if current_load + dp.weight > drone.max_weight:
+                        rule_violations += 1
+                    else:
+                        current_load += dp.weight
+                        completed_deliveries += 1
+
+                total_energy += energy_consumption
+
+            # Depo dönüşü için enerji
+            last_pos = route[-2]
+            depot_pos = route[-1]
+            distance = np.sqrt((last_pos[0] - depot_pos[0]) ** 2 + (last_pos[1] - depot_pos[1]) ** 2)
+            energy_consumption = distance / 100 * 10
+
+            if energy_consumption > current_battery:
+                rule_violations += 1
+            else:
+                current_battery -= energy_consumption
+
+            total_energy += energy_consumption
+
+        # Fitness hesaplama: tamamlanan teslimat × 100 - enerji tüketimi × 0.5 - kural ihlalleri × 2000
+        fitness = (completed_deliveries * 100) - (total_energy * 0.5) - (rule_violations * 2000)
+
+        return (fitness,)
+
+    def mutate_individual(self, individual, indpb=0.05):
+        """
+        Bireyi mutasyona uğratır
+
+        Parametreler:
+        -------------
+        individual : list
+            Mutasyona uğratılacak birey
+        indpb : float
+            Her genin mutasyon olasılığı
+
+        Dönüş:
+        ------
+        tuple
+            Mutasyona uğramış birey (tek elemanlı tuple)
+        """
+        for i in range(len(individual)):
+            if random.random() < indpb:
+                individual[i] = random.randint(0, len(self.drones) - 1)
+
+        return (individual,)
+
+    def run(self):
+        """
+        Genetik algoritma çalıştırır ve en iyi sonucu döndürür
+
+        Dönüş:
+        ------
+        dict
+            En iyi drone ataması {drone_id: [delivery_ids]}
+        float
+            En iyi fitness değeri
+        """
+        # Popülasyon oluştur
+        pop = self.toolbox.population(n=self.population_size)
+
+        # İstatistik nesnesini kaydet
+        stats = tools.Statistics(lambda ind: ind.fitness.values)
+        stats.register("avg", np.mean)
+        stats.register("min", np.min)
+        stats.register("max", np.max)
+
+        # Üstün bireyleri (Hall of Fame) kaydet
+        hof = tools.HallOfFame(1)
+
+        # Genetik algoritma çalıştır
+        pop, logbook = algorithms.eaSimple(pop, self.toolbox,
+                                           cxpb=self.crossover_prob,
+                                           mutpb=self.mutation_prob,
+                                           ngen=self.generations,
+                                           stats=stats,
+                                           halloffame=hof,
+                                           verbose=True)
+
+        # En iyi çözümü al
+        best_individual = hof[0]
+        best_fitness = self.evaluate_fitness(best_individual)[0]
+
+        # Drone atamalarını düzenle
+        assignments = {i: [] for i in range(len(self.drones))}
+
+        for i, drone_id in enumerate(best_individual):
+            assignments[drone_id].append(self.delivery_points[i].id)
+
+        return assignments, best_fitness

@@ -1,0 +1,963 @@
+{
+  "drones": [
+    {
+      "id": 0,
+      "max_weight": 5.7,
+      "battery": 5584,
+      "speed": 24.9,
+      "start_pos": [
+        599,
+        560
+      ],
+      "type": "Hızlı"
+    },
+    {
+      "id": 1,
+      "max_weight": 11.3,
+      "battery": 5990,
+      "speed": 23.8,
+      "start_pos": [
+        505,
+        501
+      ],
+      "type": "Hızlı"
+    },
+    {
+      "id": 2,
+      "max_weight": 10.8,
+      "battery": 5416,
+      "speed": 33.9,
+      "start_pos": [
+        563,
+        522
+      ],
+      "type": "Hızlı"
+    },
+    {
+      "id": 3,
+      "max_weight": 23.6,
+      "battery": 14311,
+      "speed": 13.4,
+      "start_pos": [
+        569,
+        552
+      ],
+      "type": "Ağır"
+    },
+    {
+      "id": 4,
+      "max_weight": 14.5,
+      "battery": 7476,
+      "speed": 17.7,
+      "start_pos": [
+        498,
+        506
+      ],
+      "type": "Orta"
+    },
+    {
+      "id": 5,
+      "max_weight": 10.4,
+      "battery": 4511,
+      "speed": 24.9,
+      "start_pos": [
+        560,
+        570
+      ],
+      "type": "Hızlı"
+    },
+    {
+      "id": 6,
+      "max_weight": 11.6,
+      "battery": 6325,
+      "speed": 33.9,
+      "start_pos": [
+        527,
+        541
+      ],
+      "type": "Hızlı"
+    },
+    {
+      "id": 7,
+      "max_weight": 8.3,
+      "battery": 6092,
+      "speed": 13.3,
+      "start_pos": [
+        496,
+        391
+      ],
+      "type": "Orta"
+    },
+    {
+      "id": 8,
+      "max_weight": 5.3,
+      "battery": 5353,
+      "speed": 26.1,
+      "start_pos": [
+        566,
+        471
+      ],
+      "type": "Hızlı"
+    },
+    {
+      "id": 9,
+      "max_weight": 7.4,
+      "battery": 6058,
+      "speed": 30.7,
+      "start_pos": [
+        590,
+        506
+      ],
+      "type": "Hızlı"
+    }
+  ],
+  "delivery_points": [
+    {
+      "id": 0,
+      "pos": [
+        578,
+        529
+      ],
+      "weight": 3.0,
+      "priority": 3,
+      "time_window": [
+        "08:45",
+        "11:00"
+      ],
+      "type": "Normal"
+    },
+    {
+      "id": 1,
+      "pos": [
+        505,
+        332
+      ],
+      "weight": 1.5,
+      "priority": 4,
+      "time_window": [
+        "14:15",
+        "16:15"
+      ],
+      "type": "Urgent"
+    },
+    {
+      "id": 2,
+      "pos": [
+        597,
+        572
+      ],
+      "weight": 1.6,
+      "priority": 1,
+      "time_window": [
+        "13:45",
+        "15:00"
+      ],
+      "type": "Urgent"
+    },
+    {
+      "id": 3,
+      "pos": [
+        499,
+        476
+      ],
+      "weight": 2.1,
+      "priority": 5,
+      "time_window": [
+        "18:30",
+        "19:45"
+      ],
+      "type": "Express"
+    },
+    {
+      "id": 4,
+      "pos": [
+        924,
+        827
+      ],
+      "weight": 4.5,
+      "priority": 4,
+      "time_window": [
+        "20:00",
+        "21:15"
+      ],
+      "type": "Urgent"
+    },
+    {
+      "id": 5,
+      "pos": [
+        477,
+        320
+      ],
+      "weight": 7.7,
+      "priority": 3,
+      "time_window": [
+        "10:00",
+        "13:15"
+      ],
+      "type": "Normal"
+    },
+    {
+      "id": 6,
+      "pos": [
+        493,
+        459
+      ],
+      "weight": 2.2,
+      "priority": 4,
+      "time_window": [
+        "13:00",
+        "15:30"
+      ],
+      "type": "Urgent"
+    },
+    {
+      "id": 7,
+      "pos": [
+        616,
+        503
+      ],
+      "weight": 2.0,
+      "priority": 4,
+      "time_window": [
+        "13:15",
+        "15:15"
+      ],
+      "type": "Urgent"
+    },
+    {
+      "id": 8,
+      "pos": [
+        377,
+        532
+      ],
+      "weight": 4.3,
+      "priority": 3,
+      "time_window": [
+        "17:00",
+        "20:45"
+      ],
+      "type": "Normal"
+    },
+    {
+      "id": 9,
+      "pos": [
+        553,
+        513
+      ],
+      "weight": 6.5,
+      "priority": 1,
+      "time_window": [
+        "17:45",
+        "20:30"
+      ],
+      "type": "Normal"
+    },
+    {
+      "id": 10,
+      "pos": [
+        583,
+        643
+      ],
+      "weight": 4.4,
+      "priority": 4,
+      "time_window": [
+        "19:30",
+        "21:30"
+      ],
+      "type": "Urgent"
+    },
+    {
+      "id": 11,
+      "pos": [
+        577,
+        490
+      ],
+      "weight": 5.4,
+      "priority": 3,
+      "time_window": [
+        "08:15",
+        "11:30"
+      ],
+      "type": "Normal"
+    },
+    {
+      "id": 12,
+      "pos": [
+        780,
+        287
+      ],
+      "weight": 1.0,
+      "priority": 5,
+      "time_window": [
+        "13:30",
+        "14:00"
+      ],
+      "type": "Express"
+    },
+    {
+      "id": 13,
+      "pos": [
+        495,
+        727
+      ],
+      "weight": 2.3,
+      "priority": 3,
+      "time_window": [
+        "11:00",
+        "14:30"
+      ],
+      "type": "Normal"
+    },
+    {
+      "id": 14,
+      "pos": [
+        321,
+        739
+      ],
+      "weight": 1.3,
+      "priority": 5,
+      "time_window": [
+        "15:00",
+        "16:30"
+      ],
+      "type": "Express"
+    },
+    {
+      "id": 15,
+      "pos": [
+        370,
+        362
+      ],
+      "weight": 3.1,
+      "priority": 4,
+      "time_window": [
+        "11:00",
+        "13:00"
+      ],
+      "type": "Urgent"
+    },
+    {
+      "id": 16,
+      "pos": [
+        247,
+        482
+      ],
+      "weight": 7.0,
+      "priority": 3,
+      "time_window": [
+        "11:15",
+        "14:15"
+      ],
+      "type": "Normal"
+    },
+    {
+      "id": 17,
+      "pos": [
+        836,
+        346
+      ],
+      "weight": 1.8,
+      "priority": 5,
+      "time_window": [
+        "19:15",
+        "20:30"
+      ],
+      "type": "Express"
+    },
+    {
+      "id": 18,
+      "pos": [
+        550,
+        574
+      ],
+      "weight": 3.6,
+      "priority": 3,
+      "time_window": [
+        "14:30",
+        "17:00"
+      ],
+      "type": "Normal"
+    },
+    {
+      "id": 19,
+      "pos": [
+        545,
+        546
+      ],
+      "weight": 4.1,
+      "priority": 3,
+      "time_window": [
+        "16:00",
+        "19:30"
+      ],
+      "type": "Normal"
+    },
+    {
+      "id": 20,
+      "pos": [
+        520,
+        530
+      ],
+      "weight": 1.5,
+      "priority": 4,
+      "time_window": [
+        "17:00",
+        "19:30"
+      ],
+      "type": "Urgent"
+    },
+    {
+      "id": 21,
+      "pos": [
+        732,
+        345
+      ],
+      "weight": 1.0,
+      "priority": 1,
+      "time_window": [
+        "15:45",
+        "16:00"
+      ],
+      "type": "Express"
+    },
+    {
+      "id": 22,
+      "pos": [
+        507,
+        480
+      ],
+      "weight": 10.5,
+      "priority": 1,
+      "time_window": [
+        "13:00",
+        "19:15"
+      ],
+      "type": "Bulk"
+    },
+    {
+      "id": 23,
+      "pos": [
+        912,
+        436
+      ],
+      "weight": 2.3,
+      "priority": 3,
+      "time_window": [
+        "09:15",
+        "12:45"
+      ],
+      "type": "Normal"
+    },
+    {
+      "id": 24,
+      "pos": [
+        597,
+        519
+      ],
+      "weight": 1.2,
+      "priority": 5,
+      "time_window": [
+        "08:45",
+        "09:30"
+      ],
+      "type": "Express"
+    },
+    {
+      "id": 25,
+      "pos": [
+        532,
+        172
+      ],
+      "weight": 12.7,
+      "priority": 2,
+      "time_window": [
+        "12:15",
+        "18:00"
+      ],
+      "type": "Bulk"
+    },
+    {
+      "id": 26,
+      "pos": [
+        795,
+        438
+      ],
+      "weight": 6.7,
+      "priority": 3,
+      "time_window": [
+        "13:00",
+        "16:30"
+      ],
+      "type": "Normal"
+    },
+    {
+      "id": 27,
+      "pos": [
+        519,
+        537
+      ],
+      "weight": 3.7,
+      "priority": 3,
+      "time_window": [
+        "18:30",
+        "21:45"
+      ],
+      "type": "Normal"
+    },
+    {
+      "id": 28,
+      "pos": [
+        600,
+        523
+      ],
+      "weight": 3.5,
+      "priority": 4,
+      "time_window": [
+        "13:30",
+        "15:00"
+      ],
+      "type": "Urgent"
+    },
+    {
+      "id": 29,
+      "pos": [
+        535,
+        533
+      ],
+      "weight": 5.8,
+      "priority": 3,
+      "time_window": [
+        "10:45",
+        "13:30"
+      ],
+      "type": "Normal"
+    },
+    {
+      "id": 30,
+      "pos": [
+        293,
+        110
+      ],
+      "weight": 4.4,
+      "priority": 3,
+      "time_window": [
+        "15:45",
+        "18:45"
+      ],
+      "type": "Normal"
+    },
+    {
+      "id": 31,
+      "pos": [
+        310,
+        559
+      ],
+      "weight": 7.7,
+      "priority": 3,
+      "time_window": [
+        "08:30",
+        "11:45"
+      ],
+      "type": "Normal"
+    },
+    {
+      "id": 32,
+      "pos": [
+        471,
+        558
+      ],
+      "weight": 15.0,
+      "priority": 2,
+      "time_window": [
+        "08:30",
+        "14:30"
+      ],
+      "type": "Bulk"
+    },
+    {
+      "id": 33,
+      "pos": [
+        517,
+        552
+      ],
+      "weight": 14.6,
+      "priority": 2,
+      "time_window": [
+        "14:30",
+        "20:45"
+      ],
+      "type": "Bulk"
+    },
+    {
+      "id": 34,
+      "pos": [
+        597,
+        531
+      ],
+      "weight": 13.2,
+      "priority": 2,
+      "time_window": [
+        "11:15",
+        "17:00"
+      ],
+      "type": "Bulk"
+    },
+    {
+      "id": 35,
+      "pos": [
+        866,
+        704
+      ],
+      "weight": 7.1,
+      "priority": 2,
+      "time_window": [
+        "15:15",
+        "21:15"
+      ],
+      "type": "Bulk"
+    },
+    {
+      "id": 36,
+      "pos": [
+        555,
+        534
+      ],
+      "weight": 7.1,
+      "priority": 3,
+      "time_window": [
+        "08:45",
+        "11:45"
+      ],
+      "type": "Normal"
+    },
+    {
+      "id": 37,
+      "pos": [
+        545,
+        571
+      ],
+      "weight": 2.8,
+      "priority": 3,
+      "time_window": [
+        "17:30",
+        "20:45"
+      ],
+      "type": "Normal"
+    },
+    {
+      "id": 38,
+      "pos": [
+        427,
+        852
+      ],
+      "weight": 4.0,
+      "priority": 3,
+      "time_window": [
+        "09:00",
+        "12:00"
+      ],
+      "type": "Normal"
+    },
+    {
+      "id": 39,
+      "pos": [
+        607,
+        500
+      ],
+      "weight": 9.5,
+      "priority": 2,
+      "time_window": [
+        "12:30",
+        "18:00"
+      ],
+      "type": "Bulk"
+    },
+    {
+      "id": 40,
+      "pos": [
+        666,
+        571
+      ],
+      "weight": 5.6,
+      "priority": 3,
+      "time_window": [
+        "16:45",
+        "19:15"
+      ],
+      "type": "Normal"
+    },
+    {
+      "id": 41,
+      "pos": [
+        535,
+        502
+      ],
+      "weight": 2.8,
+      "priority": 5,
+      "time_window": [
+        "19:45",
+        "20:15"
+      ],
+      "type": "Express"
+    },
+    {
+      "id": 42,
+      "pos": [
+        81,
+        664
+      ],
+      "weight": 1.2,
+      "priority": 5,
+      "time_window": [
+        "13:30",
+        "14:15"
+      ],
+      "type": "Express"
+    },
+    {
+      "id": 43,
+      "pos": [
+        258,
+        204
+      ],
+      "weight": 3.9,
+      "priority": 1,
+      "time_window": [
+        "10:30",
+        "13:30"
+      ],
+      "type": "Normal"
+    },
+    {
+      "id": 44,
+      "pos": [
+        651,
+        378
+      ],
+      "weight": 5.9,
+      "priority": 2,
+      "time_window": [
+        "16:00",
+        "21:15"
+      ],
+      "type": "Bulk"
+    },
+    {
+      "id": 45,
+      "pos": [
+        532,
+        526
+      ],
+      "weight": 1.0,
+      "priority": 5,
+      "time_window": [
+        "17:00",
+        "18:15"
+      ],
+      "type": "Express"
+    },
+    {
+      "id": 46,
+      "pos": [
+        476,
+        484
+      ],
+      "weight": 9.9,
+      "priority": 2,
+      "time_window": [
+        "09:45",
+        "15:00"
+      ],
+      "type": "Bulk"
+    },
+    {
+      "id": 47,
+      "pos": [
+        487,
+        535
+      ],
+      "weight": 3.1,
+      "priority": 3,
+      "time_window": [
+        "13:00",
+        "16:30"
+      ],
+      "type": "Normal"
+    },
+    {
+      "id": 48,
+      "pos": [
+        285,
+        239
+      ],
+      "weight": 5.1,
+      "priority": 2,
+      "time_window": [
+        "20:45",
+        "21:00"
+      ],
+      "type": "Bulk"
+    },
+    {
+      "id": 49,
+      "pos": [
+        612,
+        145
+      ],
+      "weight": 0.8,
+      "priority": 5,
+      "time_window": [
+        "15:15",
+        "16:00"
+      ],
+      "type": "Express"
+    }
+  ],
+  "no_fly_zones": [
+    {
+      "id": 0,
+      "coordinates": [
+        [
+          757,
+          687
+        ],
+        [
+          869,
+          687
+        ],
+        [
+          869,
+          789
+        ],
+        [
+          757,
+          789
+        ]
+      ],
+      "active_time": [
+        "08:00",
+        "17:00"
+      ],
+      "type": "Sanayi",
+      "risk_level": "medium"
+    },
+    {
+      "id": 1,
+      "coordinates": [
+        [
+          418,
+          834
+        ],
+        [
+          598,
+          1014
+        ],
+        [
+          778,
+          1194
+        ]
+      ],
+      "active_time": [
+        "09:30",
+        "16:30"
+      ],
+      "type": "Askeri",
+      "risk_level": "high"
+    },
+    {
+      "id": 2,
+      "coordinates": [
+        [
+          171,
+          828
+        ],
+        [
+          249,
+          907
+        ],
+        [
+          328,
+          985
+        ]
+      ],
+      "active_time": [
+        "08:00",
+        "17:00"
+      ],
+      "type": "Havaalanı",
+      "risk_level": "high"
+    },
+    {
+      "id": 3,
+      "coordinates": [
+        [
+          473,
+          370
+        ],
+        [
+          509,
+          370
+        ],
+        [
+          509,
+          404
+        ],
+        [
+          473,
+          404
+        ]
+      ],
+      "active_time": [
+        "06:00",
+        "22:00"
+      ],
+      "type": "Okul",
+      "risk_level": "low"
+    },
+    {
+      "id": 4,
+      "coordinates": [
+        [
+          601,
+          434
+        ],
+        [
+          662,
+          448
+        ],
+        [
+          710,
+          505
+        ],
+        [
+          859,
+          690
+        ],
+        [
+          950,
+          802
+        ]
+      ],
+      "active_time": [
+        "06:00",
+        "22:00"
+      ],
+      "type": "Havaalanı",
+      "risk_level": "high"
+    }
+  ],
+  "depot": [
+    548,
+    529
+  ],
+  "map_size": [
+    1000,
+    1000
+  ],
+  "metadata": {
+    "generation_time": "2025-06-01 20:20:52",
+    "seed": 707676,
+    "scenario_name": "scenario2_scenario",
+    "complexity_level": "Zor"
+  }
+}
